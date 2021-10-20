@@ -1,11 +1,9 @@
-///
-///
-///
-///
-///
-///
-///
-///
+// Project Prolog
+// Name: Tanner Erekson
+// Project: Mountain Bike Trail Recommendation System
+// Date: 10/19/2021 
+// Purpose: The purpose of this project it to create a bank for a worker
+// to use to manage accounts.
 
 using System;
 using System.IO;
@@ -17,31 +15,32 @@ namespace TrailRecommendations
     {
         static void Main(string[] args)
         {
-            List<Trail> BlackTrails = new List<Trail>();
-            List<Trail> GreenTrails = new List<Trail>();
-            List<Trail> BlueTrails = new List<Trail>();
-            List<Trail> FlowyTrails = new List<Trail>();
-            List<Trail> JumpyTrails = new List<Trail>();
-            List<Trail> TechTrails = new List<Trail>();
-            List<Trail> ShortTrails = new List<Trail>();
-            List<Trail> LongTrails = new List<Trail>();
+            // Creates Lists and variables that will be used throughout
+            List<Trail> blackTrails = new List<Trail>();
+            List<Trail> greenTrails = new List<Trail>();
+            List<Trail> blueTrails = new List<Trail>();
+            List<Trail> flowyTrails = new List<Trail>();
+            List<Trail> jumpyTrails = new List<Trail>();
+            List<Trail> techTrails = new List<Trail>();
+            List<Trail> shortTrails = new List<Trail>();
+            List<Trail> longTrails = new List<Trail>();
             var rnd = new Random();
 
-            //Asks for input for the directory of the csv file
+            // Asks for input for the directory of the csv file
             Console.Write("Please enter the path name for your csv file:");
             string filePath = Console.ReadLine();
             filePath = @"/Users/tannererekson/Desktop/TrailRecommendations/MountainBikeTrails.csv";
             StreamReader reader = null;
 
-            //checks to see if file exists
+            // checks to see if file exists
             if (File.Exists(filePath))
             {
-                //Will open up the given file
-                int count = 0;
+                // Will open up the given file
                 reader = new StreamReader(File.OpenRead(filePath));
-                List<string> listA = new List<string>();
 
-                //This will set up variables
+                // This will set up variables used in the following while loop
+                int count = 0;
+                List<string> listA = new List<string>();
                 string trail;
                 string difficulty;
                 string type;
@@ -49,10 +48,10 @@ namespace TrailRecommendations
                 string address;
                 List<Trail> trailList = new List<Trail>();
 
-                //This will loop until it reaches the end of the file
+                // This read each line one at a time until it reaches the end of the file
                 while (!reader.EndOfStream)
                 {
-                    //This will read a line in the file
+                    // This will read 1 line in the file
                     var line = reader.ReadLine();
                     if (count <= 1)
                     {
@@ -60,7 +59,7 @@ namespace TrailRecommendations
                         continue;
                     }
 
-                    //This will create a Trail object with each new line
+                    // Create a Trail object with each new line
                     listA = Seperator(line);
                     Trail myTrail = new Trail(listA[0], listA[1], listA[2], listA[3], listA[4]);
 
@@ -70,45 +69,45 @@ namespace TrailRecommendations
                     distance = listA[3];
                     address = listA[4];
 
-                    //sort by difficulty
+                    // Sort by difficulty
                     switch (myTrail.GetDifficulty())
                     {
                         case "Black":
-                            BlackTrails.Add(myTrail);
+                            blackTrails.Add(myTrail);
                             break;
                         case "Green":
-                            GreenTrails.Add(myTrail);
+                            greenTrails.Add(myTrail);
                             break;
                         case "Blue":
-                            BlueTrails.Add(myTrail);
+                            blueTrails.Add(myTrail);
                             break;
                     }
 
-                    //sort by difficulty
+                    // Sort by difficulty
                     switch (myTrail.GetTType())
                     {
                         case "Flowy":
-                            FlowyTrails.Add(myTrail);
+                            flowyTrails.Add(myTrail);
                             break;
                         case "Jumpy":
-                            JumpyTrails.Add(myTrail);
+                            jumpyTrails.Add(myTrail);
                             break;
                         case "Technical":
-                            TechTrails.Add(myTrail);
+                            techTrails.Add(myTrail);
                             break;
                     }
 
+                    // sort by distance
                     string testTrail = myTrail.GetDistance();
-                    //sort by distance
                     var myDistance = double.Parse(myTrail.GetDistance());
 
                     if (myDistance >= 3)
                     {
-                        LongTrails.Add(myTrail);
+                        longTrails.Add(myTrail);
                     }
                     else if (myDistance < 3)
                     {
-                        ShortTrails.Add(myTrail);
+                        shortTrails.Add(myTrail);
                     }
                 }
             }
@@ -118,14 +117,14 @@ namespace TrailRecommendations
                 Console.WriteLine("File doesn't exist");
             }
 
-            //Menu option will looped through until input is entered to exit
+            // Menu option will looped through until input is entered to exit
             string choice = "0";
             int index = 0;
             Trail givenTrail = null;
 
             while (choice != "4")
             {
-                //Menu Option is created
+                // Menu Option is created
                 Console.WriteLine("How would you like to sort the trails today?");
                 Console.WriteLine("1 --> Trail Type");
                 Console.WriteLine("2 --> Trail Difficulty");
@@ -136,7 +135,7 @@ namespace TrailRecommendations
                 {
                     case "1":
                         string choice2 = "0";
-                        //Menu Option2 is created
+                        // Menu Option2 is created
                         Console.WriteLine("Which Type of Trails would you like to ride today?");
                         Console.WriteLine("1 --> Flowy Trail");
                         Console.WriteLine("2 --> Jumpy Trail");
@@ -144,22 +143,22 @@ namespace TrailRecommendations
                         Console.WriteLine("4 --> Exit");
                         choice2 = Console.ReadLine();
 
-                        //checks what type of trail would like to be ridden
+                        // checks what type of trail would like to be ridden
                         switch (choice2)
                         {
                             case "1":
-                                index = rnd.Next(FlowyTrails.Count);
-                                PrintTrail(FlowyTrails[index]);
+                                index = rnd.Next(flowyTrails.Count);
+                                PrintTrail(flowyTrails[index]);
                                 choice = "4";
                                 break;
                             case "2":
-                                index = rnd.Next(JumpyTrails.Count);
-                                PrintTrail(JumpyTrails[index]);
+                                index = rnd.Next(jumpyTrails.Count);
+                                PrintTrail(jumpyTrails[index]);
                                 choice = "4";
                                 break;
                             case "3":
-                                index = rnd.Next(TechTrails.Count);
-                                PrintTrail(TechTrails[index]);
+                                index = rnd.Next(techTrails.Count);
+                                PrintTrail(techTrails[index]);
                                 choice = "4";
                                 break;
                             case "4":
@@ -169,30 +168,30 @@ namespace TrailRecommendations
 
                     case "2":
                         string choice3 = "0";
-                        //Menu Option2 is created
+                        // Menu Option2 is created
                         Console.WriteLine("Which Type of Trails would you like to ride today?");
-                        Console.WriteLine("1 --> Green Trail");
-                        Console.WriteLine("2 --> Blue Trail");
-                        Console.WriteLine("3 --> Black Trail");
+                        Console.WriteLine("1 --> Green Trail (Easy)");
+                        Console.WriteLine("2 --> Blue Trail (Intermediate)");
+                        Console.WriteLine("3 --> Black Trail(Expert)");
                         Console.WriteLine("4 --> Exit");
                         choice3 = Console.ReadLine();
 
-                        //checks what type of trail would like to be ridden
+                        // checks what type of trail would like to be ridden
                         switch (choice3)
                         {
                             case "1":
-                                index = rnd.Next(GreenTrails.Count);
-                                PrintTrail(GreenTrails[index]);
+                                index = rnd.Next(greenTrails.Count);
+                                PrintTrail(greenTrails[index]);
                                 choice = "4";
                                 break;
                             case "2":
-                                index = rnd.Next(BlueTrails.Count);
-                                PrintTrail(BlueTrails[index]);
+                                index = rnd.Next(blueTrails.Count);
+                                PrintTrail(blueTrails[index]);
                                 choice = "4";
                                 break;
                             case "3":
-                                index = rnd.Next(BlackTrails.Count);
-                                PrintTrail(BlackTrails[index]);
+                                index = rnd.Next(blackTrails.Count);
+                                PrintTrail(blackTrails[index]);
                                 choice = "4";
                                 break;
                             case "4":
@@ -201,24 +200,24 @@ namespace TrailRecommendations
                         break;
                     case "3":
                         string choice4 = "0";
-                        //Menu Option2 is created
+                        // Menu Option2 is created
                         Console.WriteLine("Which Type of Trails would you like to ride today?");
                         Console.WriteLine("1 --> Short Trail");
                         Console.WriteLine("2 --> Long Trail");
                         Console.WriteLine("3 --> Exit");
                         choice4 = Console.ReadLine();
 
-                        //checks what type of trail would like to be ridden
+                        // checks what type of trail would like to be ridden
                         switch (choice4)
                         {
                             case "1":
-                                index = rnd.Next(ShortTrails.Count);
-                                PrintTrail(ShortTrails[index]);
+                                index = rnd.Next(shortTrails.Count);
+                                PrintTrail(shortTrails[index]);
                                 choice = "4";
                                 break;
                             case "2":
-                                index = rnd.Next(LongTrails.Count);
-                                PrintTrail(LongTrails[index]); choice = "4";
+                                index = rnd.Next(longTrails.Count);
+                                PrintTrail(longTrails[index]); choice = "4";
                                 break;
                             case "3":
                                 break;
