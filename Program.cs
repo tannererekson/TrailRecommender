@@ -2,8 +2,8 @@
 // Name: Tanner Erekson
 // Project: Mountain Bike Trail Recommendation System
 // Date: 10/19/2021 
-// Purpose: The purpose of this project it to create a bank for a worker
-// to use to manage accounts.
+// Purpose: The purpose of this project is to create a system that
+// will recommend a mountain biking trail based on user input.
 
 using System;
 using System.IO;
@@ -29,7 +29,6 @@ namespace TrailRecommendations
             // Asks for input for the directory of the csv file
             Console.Write("Please enter the path name for your csv file:");
             string filePath = Console.ReadLine();
-            filePath = @"/Users/tannererekson/Desktop/TrailRecommendations/MountainBikeTrails.csv";
             StreamReader reader = null;
 
             // checks to see if file exists
@@ -120,7 +119,6 @@ namespace TrailRecommendations
             // Menu option will looped through until input is entered to exit
             string choice = "0";
             int index = 0;
-            Trail givenTrail = null;
 
             while (choice != "4")
             {
