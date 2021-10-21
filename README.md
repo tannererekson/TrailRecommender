@@ -1,6 +1,10 @@
 # TrailRecommender
 This program will recommend a mountain biking trail based on user input on what they prefer. 
 
+My wife and I enjoy mountain biking on the weekends when we aren't at work or doing homework. One of our biggest problems was that we could never decide on a trail to ride because there are so many. This program was built to help us solve that problem. With a click of a few buttons, we get a trail recommended for us.
+
+PROGRAM FUNCTION:
+
 The file MountainBikeTrails.csv holds all of the information on different mountain bike trails within the Salt Lake City area.
 
 To start off, the program will ask for this .csv file so it can be loaded and read. The program reads the file and makes Trail Objects that hold a Trail's name, difficulty, type, distance, and address. Once the object is created, it will sort the trail based on three aspects. The first is difficulty, second is type, and third is distance. Within these aspects, the program looks at the Trail object's value and puts it into a certain list.
