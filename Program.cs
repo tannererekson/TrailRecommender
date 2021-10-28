@@ -1,9 +1,10 @@
 // Project Prolog
 // Name: Tanner Erekson
 // Project: Mountain Bike Trail Recommendation System
-// Date: 10/19/2021 
+// Date: 7/13/2021 
 // Purpose: The purpose of this project is to create a system that
 // will recommend a mountain biking trail based on user input.
+// Files needed: MountainBikeTrails.csv
 
 using System;
 using System.IO;
@@ -123,7 +124,7 @@ namespace TrailRecommendations
             while (choice != "4")
             {
                 // Menu Option is created
-                Console.WriteLine("How would you like to sort the trails today?");
+                Console.WriteLine("\nHow would you like to sort the trails today?");
                 Console.WriteLine("1 --> Trail Type");
                 Console.WriteLine("2 --> Trail Difficulty");
                 Console.WriteLine("3 --> Trail Distance");
@@ -134,7 +135,7 @@ namespace TrailRecommendations
                     case "1":
                         string choice2 = "0";
                         // Menu Option2 is created
-                        Console.WriteLine("Which Type of Trails would you like to ride today?");
+                        Console.WriteLine("\nWhich Type of Trails would you like to ride today?");
                         Console.WriteLine("1 --> Flowy Trail");
                         Console.WriteLine("2 --> Jumpy Trail");
                         Console.WriteLine("3 --> Technical Trail");
@@ -167,7 +168,7 @@ namespace TrailRecommendations
                     case "2":
                         string choice3 = "0";
                         // Menu Option2 is created
-                        Console.WriteLine("Which Type of Trails would you like to ride today?");
+                        Console.WriteLine("\nWhich Type of Trails would you like to ride today?");
                         Console.WriteLine("1 --> Green Trail (Easy)");
                         Console.WriteLine("2 --> Blue Trail (Intermediate)");
                         Console.WriteLine("3 --> Black Trail(Expert)");
@@ -199,7 +200,7 @@ namespace TrailRecommendations
                     case "3":
                         string choice4 = "0";
                         // Menu Option2 is created
-                        Console.WriteLine("Which Type of Trails would you like to ride today?");
+                        Console.WriteLine("\nWhich Type of Trails would you like to ride today?");
                         Console.WriteLine("1 --> Short Trail");
                         Console.WriteLine("2 --> Long Trail");
                         Console.WriteLine("3 --> Exit");
@@ -247,11 +248,12 @@ namespace TrailRecommendations
 
         static void PrintTrail(Trail myTrail)
         {
+            Console.WriteLine("\nToday you get to ride:");
             Console.WriteLine($"Trail Name: {myTrail.GetName()}");
             Console.WriteLine($"Trail Difficulty: {myTrail.GetDifficulty()}");
             Console.WriteLine($"Trail Type: {myTrail.GetTType()}");
             Console.WriteLine($"Trail Distance: {myTrail.GetDistance()} miles");
-            Console.WriteLine($"Trail Address is: {myTrail.GetAddress()}");
+            Console.WriteLine($"Trail Address: {myTrail.GetAddress()}");
         }
     }
 }
